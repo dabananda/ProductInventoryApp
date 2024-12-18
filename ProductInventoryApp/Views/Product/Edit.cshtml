@@ -41,10 +41,10 @@
 						<label class="form-label">Quantity</label>
 						<div class="input-group">
 							<input type="number" class="form-control" id="quantity" asp-for="Quantity">
-							<select class="form-select" id="quantityUnit" name="QuantityUnit">
-								<option value="kg">kg</option>
-								<option value="liter">liter</option>
-								<option value="piece">piece</option>
+							<select class="form-select" id="quantityUnit" asp-for="QuantityUnit">
+								<option value="kg" selected="@(Model.QuantityUnit == "kg" ? "selected" : null)">kg</option>
+								<option value="liter" selected="@(Model.QuantityUnit == "liter" ? "selected" : null)">liter</option>
+								<option value="piece" selected="@(Model.QuantityUnit == "piece" ? "selected" : null)">piece</option>
 							</select>
 						</div>
 					</div>

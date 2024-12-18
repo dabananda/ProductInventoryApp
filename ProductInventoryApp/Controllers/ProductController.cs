@@ -67,6 +67,7 @@ namespace ProductInventoryApp.Controllers
                     Category = product.Category,
                     Price = product.Price,
                     Quantity = product.Quantity,
+                    QuantityUnit = product.QuantityUnit,
                 };
                 return View(updatedProduct);
             }
