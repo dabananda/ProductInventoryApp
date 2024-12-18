@@ -1,0 +1,53 @@
+﻿@model List<ProductInventoryApp.Models.Product>
+
+@{
+	ViewData["Title"] = "All Products";
+}
+
+<div class="container">
+	<h2 class="text-center">Products in Stock</h2>
+	<hr class="w-75 mx-auto" />
+	<table class="table table-bordered bg-light w-75 mx-auto">
+		<tbody>
+			<tr>
+				<th>Stock Summary</th>
+				<td>Total Items: @ViewBag.TotalItems</td>
+				<td>Total Category: @ViewBag.TotalCategories</td>
+				<td>Total Quntity: @ViewBag.TotalQuantity</td>
+				<td>Total Stock Value: @ViewBag.TotalValue tk</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="card w-75 mx-auto mt-4">
+		<div class="card-body px-0">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var product in Model)
+					{
+						<tr>
+							<th>@product.Id</th>
+							<td>@product.Name</td>
+							<td>@product.Category</td>
+							<td>@product.Price tk</td>
+							<td>@product.Quantity @product.QuantityUnit</td>
+							<td>
+								<a class="btn btn-dark me-2" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id">Update</a>
+								<a class="btn btn-dark" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
