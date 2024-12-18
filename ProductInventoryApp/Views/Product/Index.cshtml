@@ -28,6 +28,7 @@
 						<th>Category</th>
 						<th>Price</th>
 						<th>Quantity</th>
+						<th>Stock Status</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -40,6 +41,16 @@
 							<td>@product.Category</td>
 							<td>@product.Price tk</td>
 							<td>@product.Quantity @product.QuantityUnit</td>
+							<td>
+								@if (product.InStock)
+								{
+									<span class="badge bg-success">In Stock</span>
+								}
+								else
+								{
+									<span class="badge bg-danger">Out of Stock</span>
+								}
+							</td>
 							<td>
 								<a class="btn btn-dark me-2" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id">Update</a>
 								<a class="btn btn-dark" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a>

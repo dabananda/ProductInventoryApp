@@ -45,7 +45,8 @@ namespace ProductInventoryApp.Controllers
                 Category = postProductModel.Category,
                 Price = postProductModel.Price,
                 Quantity = postProductModel.Quantity,
-                QuantityUnit = postProductModel.QuantityUnit
+                QuantityUnit = postProductModel.QuantityUnit,
+                InStock = postProductModel.Quantity > 0
             };
             _context.Products.Add(product);
             _context.SaveChanges();
@@ -84,6 +85,7 @@ namespace ProductInventoryApp.Controllers
                 existingProduct.Price = putProductModel.Price;
                 existingProduct.Quantity = putProductModel.Quantity;
                 existingProduct.QuantityUnit = putProductModel.QuantityUnit;
+                existingProduct.InStock = putProductModel.Quantity > 0;
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
