@@ -5,11 +5,12 @@
 }
 
 <div class="bg-body-tertiary">
-	<div class="container">
-		<div class="card w-75 mx-auto bg-light">
+	<div class="vh-100 d-flex justify-content-center align-items-center">
+		<div class="card w-75 p-4 bg-light shadow">
 			<div class="card-body">
 				<form method="post">
-					<h2 class="card-title text-center">Add New Product</h2>
+					<h3 class="card-title text-center">Add New Product</h3>
+					<hr class="w-50 mx-auto mb-5" />
 					<div class="mb-3">
 						<div class="row">
 							<div class="col">
@@ -36,15 +37,15 @@
 					<div class="mb-3">
 						<label class="form-label">Quantity</label>
 						<div class="input-group">
-							<input type="number" class="form-control" id="quantity" asp-for="Quantity">
+							<input type="number" class="form-control w-50" id="quantity" asp-for="Quantity">
 							<select class="form-select" id="quantityUnit" name="QuantityUnit">
 								<option value="kg">kg</option>
 								<option value="liter">liter</option>
-								<option value="peice">piece</option>
+								<option value="piece">piece</option>
 							</select>
 						</div>
 					</div>
-					<div class="d-grid col-6 mx-auto mb-3 mt-4">
+					<div class="d-grid col-6 mx-auto mb-3 mt-5">
 						<button class="btn btn-dark" type="submit">Save Product</button>
 					</div>
 				</form>

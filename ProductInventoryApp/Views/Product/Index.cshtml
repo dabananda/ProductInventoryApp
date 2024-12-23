@@ -4,10 +4,10 @@
 	ViewData["Title"] = "All Products";
 }
 
-<div class="container">
+<div class="container p-4">
 	<h2 class="text-center">Products in Stock</h2>
-	<hr class="w-75 mx-auto" />
-	<table class="table table-bordered bg-light w-75 mx-auto">
+	<hr class="mx-auto" />
+	<table class="table table-bordered bg-light mx-auto">
 		<tbody>
 			<tr>
 				<th>Stock Summary</th>
@@ -18,12 +18,12 @@
 			</tr>
 		</tbody>
 	</table>
-	<div class="card w-75 mx-auto mt-4">
+	<div class="card mx-auto mt-4 shadow">
 		<div class="card-body px-0">
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th class="ps-5">ID</th>
 						<th>Name</th>
 						<th>Category</th>
 						<th>Price</th>
@@ -36,7 +36,7 @@
 					@foreach (var product in Model)
 					{
 						<tr>
-							<th>@product.Id</th>
+							<th class="ps-5">@product.Id</th>
 							<td>@product.Name</td>
 							<td>@product.Category</td>
 							<td>@product.Price tk</td>
