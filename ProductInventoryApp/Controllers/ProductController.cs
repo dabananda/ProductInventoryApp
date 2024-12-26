@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProductInventoryApp.Data;
 using ProductInventoryApp.Models;
 
@@ -14,9 +15,9 @@ namespace ProductInventoryApp.Controllers
 
         // Get all products
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var products = _context.Products.ToList();
+            var products = await _context.Products.ToListAsync();
             var totalValue = products.Sum(x => x.Price * x.Quantity);
             var totalQuantity = products.Sum(x => x.Quantity);
             var totalCategories = products.Select(x => x.Category).Distinct().Count();
@@ -37,7 +38,7 @@ namespace ProductInventoryApp.Controllers
 
         // Add new product
         [HttpPost]
-        public IActionResult Create(CreateProductModel createProductModel)
+        public async Task<IActionResult> Create(CreateProductModel createProductModel)
         {
             var product = new Product
             {
@@ -48,16 +49,16 @@ namespace ProductInventoryApp.Controllers
                 QuantityUnit = createProductModel.QuantityUnit,
                 InStock = createProductModel.Quantity > 0
             };
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            await _context.Products.AddAsync(product);
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         // Get the edit product form
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var product = _context.Products.FirstOrDefault(x => x.Id == id);
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
             if (product != null)
             {
                 var updatedProduct = new UpdateProductModel
@@ -76,9 +77,9 @@ namespace ProductInventoryApp.Controllers
 
         // Update the product
         [HttpPost]
-        public IActionResult Edit(UpdateProductModel updateProductModel)
+        public async Task<IActionResult> Edit(UpdateProductModel updateProductModel)
         {
-            var existingProduct = _context.Products.Find(updateProductModel.Id);
+            var existingProduct = await _context.Products.FindAsync(updateProductModel.Id);
             if (existingProduct != null)
             {
                 existingProduct.Name = updateProductModel.Name;
@@ -87,19 +88,19 @@ namespace ProductInventoryApp.Controllers
                 existingProduct.Quantity = updateProductModel.Quantity;
                 existingProduct.QuantityUnit = updateProductModel.QuantityUnit;
                 existingProduct.InStock = updateProductModel.Quantity > 0;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             return RedirectToAction("Index");
         }
 
         // Delete product
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var product = _context.Products.Find(id);
+            var product = await _context.Products.FindAsync(id);
             if (product != null)
             {
                 _context.Products.Remove(product);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             return RedirectToAction("Index");
         }
