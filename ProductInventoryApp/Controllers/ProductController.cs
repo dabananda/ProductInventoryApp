@@ -37,16 +37,16 @@ namespace ProductInventoryApp.Controllers
 
         // Add new product
         [HttpPost]
-        public IActionResult Create(PostProductModel postProductModel)
+        public IActionResult Create(CreateProductModel createProductModel)
         {
             var product = new Product
             {
-                Name = postProductModel.Name,
-                Category = postProductModel.Category,
-                Price = postProductModel.Price,
-                Quantity = postProductModel.Quantity,
-                QuantityUnit = postProductModel.QuantityUnit,
-                InStock = postProductModel.Quantity > 0
+                Name = createProductModel.Name,
+                Category = createProductModel.Category,
+                Price = createProductModel.Price,
+                Quantity = createProductModel.Quantity,
+                QuantityUnit = createProductModel.QuantityUnit,
+                InStock = createProductModel.Quantity > 0
             };
             _context.Products.Add(product);
             _context.SaveChanges();
@@ -60,7 +60,7 @@ namespace ProductInventoryApp.Controllers
             var product = _context.Products.FirstOrDefault(x => x.Id == id);
             if (product != null)
             {
-                var updatedProduct = new PutProductModel
+                var updatedProduct = new UpdateProductModel
                 {
                     Id = product.Id,
                     Name = product.Name,
@@ -76,17 +76,17 @@ namespace ProductInventoryApp.Controllers
 
         // Update the product
         [HttpPost]
-        public IActionResult Edit(PutProductModel putProductModel)
+        public IActionResult Edit(UpdateProductModel updateProductModel)
         {
-            var existingProduct = _context.Products.Find(putProductModel.Id);
+            var existingProduct = _context.Products.Find(updateProductModel.Id);
             if (existingProduct != null)
             {
-                existingProduct.Name = putProductModel.Name;
-                existingProduct.Category = putProductModel.Category;
-                existingProduct.Price = putProductModel.Price;
-                existingProduct.Quantity = putProductModel.Quantity;
-                existingProduct.QuantityUnit = putProductModel.QuantityUnit;
-                existingProduct.InStock = putProductModel.Quantity > 0;
+                existingProduct.Name = updateProductModel.Name;
+                existingProduct.Category = updateProductModel.Category;
+                existingProduct.Price = updateProductModel.Price;
+                existingProduct.Quantity = updateProductModel.Quantity;
+                existingProduct.QuantityUnit = updateProductModel.QuantityUnit;
+                existingProduct.InStock = updateProductModel.Quantity > 0;
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
