@@ -2,22 +2,23 @@
 using Microsoft.EntityFrameworkCore;
 using ProductInventoryApp.Data;
 using ProductInventoryApp.Models;
+using ProductInventoryApp.Repository;
 
 namespace ProductInventoryApp.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public ProductController(ApplicationDbContext context)
+        private readonly IProductRepo _productRepo;
+        public ProductController(IProductRepo productRepo)
         {
-            _context = context;
+            _productRepo = productRepo;
         }
 
         // Get all products
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var products = await _context.Products.ToListAsync();
+            var products = await _productRepo.GetAllProducts();
             var totalValue = products.Sum(x => x.Price * x.Quantity);
             var totalQuantity = products.Sum(x => x.Quantity);
             var totalCategories = products.Select(x => x.Category).Distinct().Count();
@@ -49,8 +50,7 @@ namespace ProductInventoryApp.Controllers
                 QuantityUnit = createProductModel.QuantityUnit,
                 InStock = createProductModel.Quantity > 0
             };
-            await _context.Products.AddAsync(product);
-            await _context.SaveChangesAsync();
+            await _productRepo.AddProduct(product);
             return RedirectToAction("Index");
         }
 
@@ -58,7 +58,7 @@ namespace ProductInventoryApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            var product = await _productRepo.GetProductById(id);
             if (product != null)
             {
                 var updatedProduct = new UpdateProductModel
@@ -79,29 +79,24 @@ namespace ProductInventoryApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UpdateProductModel updateProductModel)
         {
-            var existingProduct = await _context.Products.FindAsync(updateProductModel.Id);
-            if (existingProduct != null)
+            var product = new Product
             {
-                existingProduct.Name = updateProductModel.Name;
-                existingProduct.Category = updateProductModel.Category;
-                existingProduct.Price = updateProductModel.Price;
-                existingProduct.Quantity = updateProductModel.Quantity;
-                existingProduct.QuantityUnit = updateProductModel.QuantityUnit;
-                existingProduct.InStock = updateProductModel.Quantity > 0;
-                await _context.SaveChangesAsync();
-            }
+                Id = updateProductModel.Id,
+                Name = updateProductModel.Name,
+                Category = updateProductModel.Category,
+                Price = updateProductModel.Price,
+                Quantity = updateProductModel.Quantity,
+                QuantityUnit = updateProductModel.QuantityUnit,
+                InStock = updateProductModel.Quantity > 0
+            };
+            var existingProduct = await _productRepo.UpdateProduct(product);
             return RedirectToAction("Index");
         }
 
         // Delete product
         public async Task<IActionResult> Delete(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-                await _context.SaveChangesAsync();
-            }
+            var product = await _productRepo.DeleteProduct(id);
             return RedirectToAction("Index");
         }
     }

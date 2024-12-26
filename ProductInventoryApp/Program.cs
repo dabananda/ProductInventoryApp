@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProductInventoryApp.Data;
+using ProductInventoryApp.Repository;
 
 namespace ProductInventoryApp
 {
@@ -15,6 +16,9 @@ namespace ProductInventoryApp
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
+
+            // Dependency injection for ProductRepo
+            builder.Services.AddScoped<IProductRepo, ProductRepo>();
 
             var app = builder.Build();
 
