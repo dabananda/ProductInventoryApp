@@ -8,13 +8,15 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/ProductInventoryApp.styles.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/my-custom-css/main.css"/>
+	<link rel="stylesheet" href="~/css/my-custom-css/main.css" />
 </head>
 <body>
 	<div>
 		<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
 			<div class="container-fluid">
-				<a class="navbar-brand text-light">Inventory Management Application</a>
+				<a class="navbar-brand text-light">
+					<img class="d-inline-block align-text-top me-2" width="28" src="~/assets/logo.png" /> Inventory Management
+				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -51,6 +53,7 @@
 			<div class="menu bg-dark">
 				<nav class="navbar">
 					<div class="navbar-collapse w-100">
+						<p class="text-secondary m-0 ms-3 mb-2 fw-bold">INVENTORY</p>
 						<ul class="navbar-nav">
 							<li class="nav-item left-nav-item px-3">
 								<a class="nav-link text-light" asp-controller="Home" asp-action="Index">
@@ -65,6 +68,40 @@
 							<li class="nav-item left-nav-item px-3">
 								<a class="nav-link text-light" asp-controller="Product" asp-action="Create">
 									<i class="bi bi-file-earmark-plus-fill me-1"></i> Add Product
+								</a>
+							</li>
+						</ul>
+						<p class="text-secondary m-0 ms-3 mt-4 mb-2 fw-bold">SALES</p>
+						<ul class="navbar-nav">
+							<li class="nav-item left-nav-item px-3">
+								<a class="nav-link text-light" asp-controller="Product" asp-action="Index">
+									<i class="bi bi-receipt me-1"></i> All Sales
+								</a>
+							</li>
+							<li class="nav-item left-nav-item px-3">
+								<a class="nav-link text-light" asp-controller="Product" asp-action="Create">
+									<i class="bi bi-cart-plus-fill me-1"></i> Create New Sale
+								</a>
+							</li>
+						</ul>
+						<p class="text-secondary m-0 ms-3 mt-4 mb-2 fw-bold">PURCHASES</p>
+						<ul class="navbar-nav">
+							<li class="nav-item left-nav-item px-3">
+								<a class="nav-link text-light" asp-controller="Product" asp-action="Index">
+									<i class="bi bi-bag-check-fill me-1"></i> All Purchases
+								</a>
+							</li>
+							<li class="nav-item left-nav-item px-3">
+								<a class="nav-link text-light" asp-controller="Product" asp-action="Create">
+									<i class="bi bi-bag-plus-fill me-1"></i> New Purchases
+								</a>
+							</li>
+						</ul>
+						<p class="text-secondary m-0 ms-3 mt-4 mb-2 fw-bold">REPORT</p>
+						<ul class="navbar-nav">
+							<li class="nav-item left-nav-item px-3">
+								<a class="nav-link text-light" asp-controller="Product" asp-action="Index">
+									<i class="bi bi-graph-up me-1"></i> Reports
 								</a>
 							</li>
 						</ul>
