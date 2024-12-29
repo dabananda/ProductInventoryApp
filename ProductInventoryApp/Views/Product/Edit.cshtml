@@ -5,55 +5,53 @@
 }
 
 <div class="bg-body-tertiary">
-	<div class="vh-100 d-flex justify-content-center align-items-center">
-		<div class="card w-75 p-4 mx-auto bg-light shadow">
-			<form method="post">
-				<div class="card-body">
-					<h3 class="card-title text-center">Update Product</h3>
-					<hr class="w-50 mx-auto mb-4" />
-					<div class="mb-3">
-						<label class="form-label">Product Id</label>
-						<input type="number" class="form-control" id="Id" asp-for="Id" readonly>
-					</div>
-					<div class="mb-3">
-						<div class="row">
-							<div class="col">
-								<label class="form-label">Product name</label>
-								<input type="text" class="form-control" id="name" asp-for="Name">
-							</div>
-							<div class="col">
-								<label class="form-label">Category</label>
-								<select class="form-select" id="category" asp-for="Category">
-									<option value="Food">Food</option>
-									<option value="Oil">Oil</option>
-									<option value="Fruits">Fruits</option>
-									<option value="Meat">Meat</option>
-									<option value="Fish">Fish</option>
-									<option value="Other">Other</option>
-								</select>
-							</div>
+	<div class="card w-50 p-3 mt-3 mx-auto bg-light shadow">
+		<form method="post">
+			<div class="card-body">
+				<h3 class="card-title text-center">Update Product</h3>
+				<hr class="w-50 mx-auto mb-4" />
+				<div class="mb-3">
+					<label class="form-label">Product Id</label>
+					<input type="number" class="form-control" id="Id" asp-for="Id" readonly>
+				</div>
+				<div class="mb-3">
+					<div class="row">
+						<div class="col">
+							<label class="form-label">Product name</label>
+							<input type="text" class="form-control" id="name" asp-for="Name">
 						</div>
-					</div>
-					<div class="mb-3">
-						<label class="form-label">Price</label>
-						<input type="text" class="form-control" id="price" asp-for="Price">
-					</div>
-					<div class="mb-3">
-						<label class="form-label">Quantity</label>
-						<div class="input-group">
-							<input type="number" class="form-control w-50" id="quantity" asp-for="Quantity">
-							<select class="form-select" id="quantityUnit" asp-for="QuantityUnit">
-								<option value="kg" selected="@(Model.QuantityUnit == "kg" ? "selected" : null)">kg</option>
-								<option value="liter" selected="@(Model.QuantityUnit == "liter" ? "selected" : null)">liter</option>
-								<option value="piece" selected="@(Model.QuantityUnit == "piece" ? "selected" : null)">piece</option>
+						<div class="col">
+							<label class="form-label">Category</label>
+							<select class="form-select" id="category" asp-for="Category">
+								<option value="Food">Food</option>
+								<option value="Oil">Oil</option>
+								<option value="Fruits">Fruits</option>
+								<option value="Meat">Meat</option>
+								<option value="Fish">Fish</option>
+								<option value="Other">Other</option>
 							</select>
 						</div>
 					</div>
-					<div class="d-grid col-5 mx-auto mt-4">
-						<button class="btn btn-dark" type="submit">Update</button>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Price</label>
+					<input type="text" class="form-control" id="price" asp-for="Price">
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Quantity</label>
+					<div class="input-group">
+						<input type="number" class="form-control w-50" id="quantity" asp-for="Quantity">
+						<select class="form-select" id="quantityUnit" asp-for="QuantityUnit">
+							<option value="kg" selected="@(Model.QuantityUnit == "kg" ? "selected" : null)">kg</option>
+							<option value="liter" selected="@(Model.QuantityUnit == "liter" ? "selected" : null)">liter</option>
+							<option value="piece" selected="@(Model.QuantityUnit == "piece" ? "selected" : null)">piece</option>
+						</select>
 					</div>
 				</div>
-			</form>
-		</div>
+				<div class="d-grid col-5 mx-auto mt-4">
+					<button class="btn btn-dark" type="submit">Update</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

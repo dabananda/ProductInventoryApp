@@ -1,9 +1,51 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<ProductInventoryApp.Models.Product>
+
+@{
+	ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center p-4">
-    <h1 class="display-4">Welcome to the <span class="fw-bold">Product Inventory</span> Application</h1>
-    <hr />
-    <a class="btn btn-dark btn-lg mt-5" asp-controller="Product" asp-for="Index">View Products</a>
+<div class="p-3">
+	<h2>Dashboard</h2>
+	<div class="row mt-4">
+		<div class="col-md-3">
+			<div class="card bg-primary text-light">
+				<div class="card-header">
+					Total Items
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">@ViewBag.TotalItems</h5>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card bg-success text-light">
+				<div class="card-header">
+					Total Categories
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">@ViewBag.TotalCategories</h5>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card bg-warning text-light">
+				<div class="card-header">
+					Total Quantities
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">@ViewBag.TotalQuantity</h5>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card bg-danger text-light">
+				<div class="card-header">
+					Tatal Stock Value
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">@ViewBag.TotalValue</h5>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -1,0 +1,51 @@
+﻿body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.layout-container {
+    display: flex;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+}
+
+.menu {
+    width: 15%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+    .menu .navbar {
+        height: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu .navbar-collapse {
+        align-items: start;
+    }
+
+    .menu .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu .nav-link {
+        width: 100%;
+        text-align: left;
+    }
+
+.left-nav-item:hover {
+    background-color: #0d6efd;
+    transition: background-color 0.2s ease;
+}
+
+.active {
+    color: #0d6efd !important;
+    background-color: #0d6efd;
+    border-radius: 4px;
+}
+
+.content {
+/*    width: 75%;*/
+/*    overflow-y: auto;*/
+}

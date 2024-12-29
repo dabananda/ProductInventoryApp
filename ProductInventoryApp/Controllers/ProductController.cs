@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ProductInventoryApp.Data;
 using ProductInventoryApp.Models;
 using ProductInventoryApp.Repository;
 

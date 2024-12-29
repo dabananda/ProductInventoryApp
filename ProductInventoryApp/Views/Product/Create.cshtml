@@ -5,51 +5,49 @@
 }
 
 <div class="bg-body-tertiary">
-	<div class="vh-100 d-flex justify-content-center align-items-center">
-		<div class="card w-75 p-4 bg-light shadow">
-			<div class="card-body">
-				<form method="post">
-					<h3 class="card-title text-center">Add New Product</h3>
-					<hr class="w-50 mx-auto mb-5" />
-					<div class="mb-3">
-						<div class="row">
-							<div class="col">
-								<label class="form-label">Product name</label>
-								<input type="text" class="form-control" id="name" asp-for="Name">
-							</div>
-							<div class="col">
-								<label class="form-label">Category</label>
-								<select class="form-select" id="category" asp-for="Category">
-									<option value="Food">Food</option>
-									<option value="Oil">Oil</option>
-									<option value="Fruits">Fruits</option>
-									<option value="Meat">Meat</option>
-									<option value="Fish">Fish</option>
-									<option value="Other">Other</option>
-								</select>
-							</div>
+	<div class="card p-3 mt-3 w-50 mx-auto bg-light shadow">
+		<div class="card-body">
+			<form method="post">
+				<h3 class="card-title text-center">Add New Product</h3>
+				<hr class="w-50 mx-auto mb-5" />
+				<div class="mb-3">
+					<div class="row">
+						<div class="col">
+							<label class="form-label">Product name</label>
+							<input type="text" class="form-control" id="name" asp-for="Name">
 						</div>
-					</div>
-					<div class="mb-3">
-						<label class="form-label">Price</label>
-						<input type="text" class="form-control" id="price" asp-for="Price">
-					</div>
-					<div class="mb-3">
-						<label class="form-label">Quantity</label>
-						<div class="input-group">
-							<input type="number" class="form-control w-50" id="quantity" asp-for="Quantity">
-							<select class="form-select" id="quantityUnit" name="QuantityUnit">
-								<option value="kg">kg</option>
-								<option value="liter">liter</option>
-								<option value="piece">piece</option>
+						<div class="col">
+							<label class="form-label">Category</label>
+							<select class="form-select" id="category" asp-for="Category">
+								<option value="Food">Food</option>
+								<option value="Oil">Oil</option>
+								<option value="Fruits">Fruits</option>
+								<option value="Meat">Meat</option>
+								<option value="Fish">Fish</option>
+								<option value="Other">Other</option>
 							</select>
 						</div>
 					</div>
-					<div class="d-grid col-6 mx-auto mb-3 mt-5">
-						<button class="btn btn-dark" type="submit">Save Product</button>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Price</label>
+					<input type="text" class="form-control" id="price" asp-for="Price">
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Quantity</label>
+					<div class="input-group">
+						<input type="number" class="form-control w-50" id="quantity" asp-for="Quantity">
+						<select class="form-select" id="quantityUnit" name="QuantityUnit">
+							<option value="kg">kg</option>
+							<option value="liter">liter</option>
+							<option value="piece">piece</option>
+						</select>
 					</div>
-				</form>
-			</div>
+				</div>
+				<div class="d-grid col-6 mx-auto mb-3 mt-5">
+					<button class="btn btn-dark" type="submit">Save Product</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
