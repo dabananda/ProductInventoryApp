@@ -1,10 +1,9 @@
 ﻿body, html {
     height: 100%;
     margin: 0;
-    overflow: hidden; /* Prevent body level scrolling */
+    overflow: hidden;
 }
 
-/* Top navbar styles */
 .navbar-fixed-top {
     position: fixed;
     top: 0;
@@ -12,13 +11,12 @@
     left: 0;
     z-index: 1030;
     background-color: white;
-    height: 56px; /* Fixed height for top navbar */
+    height: 56px;
 }
 
-/* Main layout container */
 .layout-container {
     position: fixed;
-    top: 56px; /* Height of top navbar */
+    top: 56px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -26,10 +24,8 @@
     overflow: hidden;
 }
 
-/* Left menu styles */
 .menu {
-    flex-shrink: 0; /* Prevent menu from shrinking */
-    width: 250px; /* Adjust width as needed */
+    flex-shrink: 0;
     height: 100%;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     background-color: white;
@@ -59,17 +55,15 @@
         padding: 0.5rem 1rem;
     }
 
-/* Content area styles */
 .content-wrapper {
     flex-grow: 1;
     height: 100%;
-    overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 20px;
     background-color: #f8f9fa;
 }
 
-/* Navigation item styles */
 .left-nav-item:hover {
     background-color: #0d6efd;
     transition: background-color 0.2s ease;
@@ -85,9 +79,8 @@
     text-decoration: none;
 }
 
-/* Ensure footer doesn't interfere with scrolling */
 .footer {
-    position: relative; /* Change from absolute to relative */
+    position: relative;
     width: 100%;
     white-space: nowrap;
     line-height: 60px;

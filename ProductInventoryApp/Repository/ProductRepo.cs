@@ -11,16 +11,16 @@ namespace ProductInventoryApp.Repository
         {
             _context = context;
         }
-        public async Task<Product> AddProduct(Product product)
-        {
-            var type = product.GetType();
-            var prop = type.GetProperty("InStock");
-            prop?.SetValue(product, product.Quantity > 0);
+        //public async Task<Product> AddProduct(Product product)
+        //{
+        //    var type = product.GetType();
+        //    var prop = type.GetProperty("InStock");
+        //    prop?.SetValue(product, product.Quantity > 0);
 
-            await _context.Products.AddAsync(product);
-            await _context.SaveChangesAsync();
-            return product;
-        }
+        //    await _context.Products.AddAsync(product);
+        //    await _context.SaveChangesAsync();
+        //    return product;
+        //}
 
         public async Task<Product?> DeleteProduct(int id)
         {

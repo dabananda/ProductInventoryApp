@@ -28,31 +28,31 @@ namespace ProductInventoryApp.Controllers
         }
 
         // GET: Get the create new product page
-        public IActionResult Create()
-        {
-            return View();
-        }
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: Add new product
-        [HttpPost]
-        public async Task<IActionResult> Create(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                if (product.ImageFile != null)
-                {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        product.ImageFile.CopyTo(memoryStream);
-                        product.Image = memoryStream.ToArray();
-                    }
-                }
-                await _productRepo.AddProduct(product);
-                TempData["success"] = "Product added successfully!";
-                return RedirectToAction("Index");
-            }
-            return View(product);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Create(Product product)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (product.ImageFile != null)
+        //        {
+        //            using (var memoryStream = new MemoryStream())
+        //            {
+        //                product.ImageFile.CopyTo(memoryStream);
+        //                product.Image = memoryStream.ToArray();
+        //            }
+        //        }
+        //        await _productRepo.AddProduct(product);
+        //        TempData["success"] = "Product added successfully!";
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(product);
+        //}
 
         // Get the edit product form
         public async Task<IActionResult> Edit(int id)
