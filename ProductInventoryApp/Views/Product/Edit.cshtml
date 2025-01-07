@@ -1,15 +1,20 @@
 ﻿@model ProductInventoryApp.Models.Product
 
 @{
-	ViewData["Title"] = "Add Product";
+	ViewData["Title"] = "Update Product";
 }
 
 <div class="bg-body-tertiary">
 	<div class="card p-3 mt-3 w-50 mx-auto bg-light shadow">
 		<div class="card-body">
 			<form asp-controller="Product" asp-action="Edit" enctype="multipart/form-data" method="post">
-				<h3 class="card-title text-center">Add New Product</h3>
+				<h3 class="card-title text-center">Update Product</h3>
 				<hr class="w-50 mx-auto mb-5" />
+				@* Id *@
+				<div class="mb-3">
+					<label asp-for="Id" class="form-label"></label>
+					<input class="form-control" asp-for="Id" readonly>
+				</div>
 				<div class="mb-3">
 					<div class="row">
 						@* Name *@

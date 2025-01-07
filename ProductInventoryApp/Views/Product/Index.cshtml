@@ -1,4 +1,4 @@
-﻿@model List<ProductInventoryApp.Models.Product>
+﻿@model List<Product>
 
 @{
 	ViewData["Title"] = "All Products";
@@ -14,7 +14,7 @@
 				<td>Total Items: @ViewBag.TotalItems</td>
 				<td>Total Category: @ViewBag.TotalCategories</td>
 				<td>Total Quntity: @ViewBag.TotalQuantity</td>
-				<td>Total Stock Value: @ViewBag.TotalValue tk</td>
+				<td>Total Stock Value: @ViewBag.TotalValue BDT</td>
 			</tr>
 		</tbody>
 	</table>
@@ -24,10 +24,12 @@
 				<thead>
 					<tr>
 						<th class="ps-5">ID</th>
+						<th>Image</th>
 						<th>Name</th>
 						<th>Category</th>
 						<th>Price</th>
 						<th>Quantity</th>
+						<th>Total Value</th>
 						<th>Stock Status</th>
 						<th>Actions</th>
 					</tr>
@@ -37,10 +39,19 @@
 					{
 						<tr>
 							<th class="ps-5">@product.Id</th>
+							@if (product.Image != null)
+							{
+								<td><img src="data:image/jpeg;base64,@Convert.ToBase64String(product.Image)" width="50" height="50" alt="Product image" /></td>
+							}
+							else
+							{
+								<td><img src="~/assets/no-image.jpg" width="50" height="50" alt="No image" /></td>
+							}
 							<td>@product.Name</td>
 							<td>@product.Category</td>
 							<td>@product.Price tk</td>
 							<td>@product.Quantity @product.Unit</td>
+							<td>@(product.Price * product.Quantity) tk</td>
 							<td>
 								@if (product.InStock)
 								{
@@ -52,8 +63,8 @@
 								}
 							</td>
 							<td>
-								<a class="btn btn-dark me-2" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id">Update</a>
-								<a class="btn btn-dark" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+								<a class="btn btn-dark btn-sm me-2" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id">Update</a>
+								<a class="btn btn-danger btn-sm" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
 							</td>
 						</tr>
 					}

@@ -48,7 +48,7 @@ namespace ProductInventoryApp.Controllers
                     }
                 }
                 await _productRepo.AddProduct(product);
-                TempData["Message"] = "Product added successfully!";
+                TempData["success"] = "Product added successfully!";
                 return RedirectToAction("Index");
             }
             return View(product);
@@ -80,7 +80,7 @@ namespace ProductInventoryApp.Controllers
                     }
                 }
                 await _productRepo.UpdateProduct(product);
-                TempData["Message"] = "Product updated successfully!";
+                TempData["success"] = "Product updated successfully!";
                 return RedirectToAction("Index");
             }
             return View(product);
@@ -90,6 +90,7 @@ namespace ProductInventoryApp.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _productRepo.DeleteProduct(id);
+            TempData["success"] = "Product deleted successfully!";
             return RedirectToAction("Index");
         }
     }
