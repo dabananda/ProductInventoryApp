@@ -13,7 +13,6 @@ namespace ProductInventoryApp.Controllers
         }
 
         // Get all products
-        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var products = await _productRepo.GetAllProducts();
@@ -28,67 +27,63 @@ namespace ProductInventoryApp.Controllers
             return View(products);
         }
 
-        // Get "Add Product" page
-        [HttpGet]
+        // GET: Get the create new product page
         public IActionResult Create()
         {
             return View();
         }
 
-        // Add new product
+        // POST: Add new product
         [HttpPost]
-        public async Task<IActionResult> Create(CreateProductModel createProductModel)
+        public async Task<IActionResult> Create(Product product)
         {
-            var product = new Product
+            if (ModelState.IsValid)
             {
-                Name = createProductModel.Name,
-                Category = createProductModel.Category,
-                Price = createProductModel.Price,
-                Quantity = createProductModel.Quantity,
-                QuantityUnit = createProductModel.QuantityUnit,
-                InStock = createProductModel.Quantity > 0
-            };
-            await _productRepo.AddProduct(product);
-            return RedirectToAction("Index");
+                if (product.ImageFile != null)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        product.ImageFile.CopyTo(memoryStream);
+                        product.Image = memoryStream.ToArray();
+                    }
+                }
+                await _productRepo.AddProduct(product);
+                TempData["Message"] = "Product added successfully!";
+                return RedirectToAction("Index");
+            }
+            return View(product);
         }
 
         // Get the edit product form
-        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var product = await _productRepo.GetProductById(id);
-            if (product != null)
+            if (product == null)
             {
-                var updatedProduct = new UpdateProductModel
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Category = product.Category,
-                    Price = product.Price,
-                    Quantity = product.Quantity,
-                    QuantityUnit = product.QuantityUnit,
-                };
-                return View(updatedProduct);
+                return NotFound();
             }
-            return View(null);
+            return View(product);
         }
 
-        // Update the product
+        // POST: Update the product
         [HttpPost]
-        public async Task<IActionResult> Edit(UpdateProductModel updateProductModel)
+        public async Task<IActionResult> Edit(Product product)
         {
-            var product = new Product
+            if (ModelState.IsValid)
             {
-                Id = updateProductModel.Id,
-                Name = updateProductModel.Name,
-                Category = updateProductModel.Category,
-                Price = updateProductModel.Price,
-                Quantity = updateProductModel.Quantity,
-                QuantityUnit = updateProductModel.QuantityUnit,
-                InStock = updateProductModel.Quantity > 0
-            };
-            var existingProduct = await _productRepo.UpdateProduct(product);
-            return RedirectToAction("Index");
+                if (product.ImageFile != null)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        product.ImageFile.CopyTo(memoryStream);
+                        product.Image = memoryStream.ToArray();
+                    }
+                }
+                await _productRepo.UpdateProduct(product);
+                TempData["Message"] = "Product updated successfully!";
+                return RedirectToAction("Index");
+            }
+            return View(product);
         }
 
         // Delete product

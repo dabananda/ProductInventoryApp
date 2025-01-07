@@ -1,4 +1,4 @@
-﻿body, html {
+﻿/*body, html {
     height: 100%;
     margin: 0;
 }
@@ -42,4 +42,97 @@
     color: #0d6efd !important;
     background-color: #0d6efd;
     border-radius: 4px;
+}
+*/
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevent body level scrolling */
+}
+
+/* Top navbar styles */
+.navbar-fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: white;
+    height: 56px; /* Fixed height for top navbar */
+}
+
+/* Main layout container */
+.layout-container {
+    position: fixed;
+    top: 56px; /* Height of top navbar */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Left menu styles */
+.menu {
+    flex-shrink: 0; /* Prevent menu from shrinking */
+    width: 250px; /* Adjust width as needed */
+    height: 100%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    z-index: 1020;
+}
+
+    .menu .navbar {
+        height: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .menu .navbar-collapse {
+        align-items: start;
+        width: 100%;
+    }
+
+    .menu .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu .nav-link {
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem 1rem;
+    }
+
+/* Content area styles */
+.content-wrapper {
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+/* Navigation item styles */
+.left-nav-item:hover {
+    background-color: #0d6efd;
+    transition: background-color 0.2s ease;
+}
+
+.active {
+    color: white !important;
+    background-color: #0d6efd;
+    border-radius: 4px;
+}
+
+/* Ensure footer doesn't interfere with scrolling */
+.footer {
+    position: relative; /* Change from absolute to relative */
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    margin-top: 20px;
 }

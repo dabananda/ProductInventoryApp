@@ -1,4 +1,4 @@
-﻿@model ProductInventoryApp.Models.CreateProductModel
+﻿@model Product
 
 @{
 	ViewData["Title"] = "Add Product";
@@ -7,43 +7,98 @@
 <div class="bg-body-tertiary">
 	<div class="card p-3 mt-3 w-50 mx-auto bg-light shadow">
 		<div class="card-body">
-			<form method="post">
+			<form asp-controller="Product" asp-action="Create" enctype="multipart/form-data" method="post">
 				<h3 class="card-title text-center">Add New Product</h3>
 				<hr class="w-50 mx-auto mb-5" />
 				<div class="mb-3">
 					<div class="row">
+						@* Name *@
 						<div class="col">
-							<label class="form-label">Product name</label>
+							<label asp-for="Name" class="form-label"></label>
 							<input type="text" class="form-control" id="name" asp-for="Name">
 						</div>
+						@* Category *@
 						<div class="col">
-							<label class="form-label">Category</label>
+							<label asp-for="Category" class="form-label"></label>
 							<select class="form-select" id="category" asp-for="Category">
-								<option value="Food">Food</option>
-								<option value="Oil">Oil</option>
-								<option value="Fruits">Fruits</option>
-								<option value="Meat">Meat</option>
-								<option value="Fish">Fish</option>
-								<option value="Other">Other</option>
+								<option value="">Select category</option>
+								<option value="Fruits and Vegetables">Fruits and Vegetables</option>
+								<option value="Dairy & Eggs">Dairy & Eggs</option>
+								<option value="Meat & Seafood">Meat & Seafood</option>
+								<option value="Bakery & Bread">Bakery & Bread</option>
+								<option value="Pantry Staples">Pantry Staples</option>
+								<option value="Snacks & Confectionery">Snacks & Confectionery</option>
+								<option value="Beverages">Beverages</option>
+								<option value="Health & Beauty">Health & Beauty</option>
+								<option value="Baby & Child">Baby & Child</option>
+								<option value="Pet Care">Pet Care</option>
+								<option value="Electronics">Electronics</option>
+								<option value="Frozen Foods">Frozen Foods</option>
+								<option value="Household & Cleaning">Household & Cleaning</option>
 							</select>
 						</div>
 					</div>
 				</div>
+				@* Manufacturer *@
 				<div class="mb-3">
-					<label class="form-label">Price</label>
+					<label asp-for="Manufacturer" class="form-label"></label>
+					<input type="text" class="form-control" id="manufacturer" asp-for="Manufacturer">
+				</div>
+
+				@* Price *@
+				<div class="mb-3">
+					<label asp-for="Price" class="form-label"></label>
 					<input type="text" class="form-control" id="price" asp-for="Price">
 				</div>
-				<div class="mb-3">
-					<label class="form-label">Quantity</label>
-					<div class="input-group">
-						<input type="number" class="form-control w-50" id="quantity" asp-for="Quantity">
-						<select class="form-select" id="quantityUnit" name="QuantityUnit">
-							<option value="kg">kg</option>
-							<option value="liter">liter</option>
-							<option value="piece">piece</option>
-						</select>
+
+				@* Quantity *@
+				<div class="row">
+					<div class="col">
+						<div class="mb-3">
+							<label asp-for="Quantity" class="form-label"></label>
+							<input type="number" class="form-control" id="quantity" asp-for="Quantity">
+						</div>
+					</div>
+					<div class="col">
+						<div>
+							<label asp-for="Unit" class="form-label me-2 mb-3"></label>
+							<div>
+								<div class="form-check form-check-inline">
+									<input asp-for="Unit" type="radio" class="form-check-input" value="KG" id="KG">
+									<label class="form-check-label" for="KG">KG</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input asp-for="Unit" type="radio" class="form-check-input" value="Litre" id="Litre">
+									<label class="form-check-label" for="Litre">Litre</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input asp-for="Unit" type="radio" class="form-check-input" value="Unit" id="Unit">
+									<label class="form-check-label" for="Unit">Unit</label>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
+
+				@* ManufacturerDate *@
+				<div class="mb-3">
+					<label asp-for="ManufacturerDate" class="form-label"></label>
+					<input type="date" class="form-control" asp-for="ManufacturerDate">
+				</div>
+
+				@* ExpiryDate *@
+				<div class="mb-3">
+					<label asp-for="ExpiryDate" class="form-label"></label>
+					<input type="date" class="form-control" asp-for="ExpiryDate">
+				</div>
+
+				@* Image *@
+				<div class="mb-3">
+					<label asp-for="ImageFile" class="form-label"></label>
+					<input type="file" class="form-control" id="image" asp-for="ImageFile">
+				</div>
+
+				@* Submit Button *@
 				<div class="d-grid col-6 mx-auto mb-3 mt-5">
 					<button class="btn btn-dark" type="submit">Save Product</button>
 				</div>

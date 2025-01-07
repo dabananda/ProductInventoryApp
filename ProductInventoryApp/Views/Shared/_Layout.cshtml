@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div>
-		<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+		<nav class="navbar navbar-expand-lg navbar-fixed-top bg-dark" data-bs-theme="dark">
 			<div class="container-fluid">
 				<a class="navbar-brand text-light">
 					<img class="d-inline-block align-text-top me-2" width="28" src="~/assets/logo.png" /> Inventory Management
@@ -51,7 +51,7 @@
 		</nav>
 		<div class="layout-container">
 			<div class="menu bg-dark">
-				<nav class="navbar pb-0">
+				<nav class="navbar navbar-expand-lg pb-0">
 					<div class="navbar-collapse d-flex flex-column justify-content-between">
 						<div>
 							<p class="text-secondary m-0 ms-3 mb-2 fw-bold">INVENTORY</p>
@@ -116,10 +116,10 @@
 					</div>
 				</nav>
 			</div>
-			<div class="container">
-				<main role="main">
+			<div class="content-wrapper">
+				@* <main role="main"> *@
 					@RenderBody()
-				</main>
+				@* </main> *@
 			</div>
 		</div>
 	</div>
