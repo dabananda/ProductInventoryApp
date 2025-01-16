@@ -11,8 +11,10 @@ namespace ProductInventoryApp.Models
         [StringLength(100, MinimumLength = 2)]
         public string Name { get; set; }
         [Required]
-        [StringLength(50, MinimumLength = 2)]
-        public string Category { get; set; }
+        [Display(Name = "Category")]
+        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
+        public Category? Category { get; set; }
         [Required]
         [StringLength(50)]
         public string Manufacturer { get; set; }
