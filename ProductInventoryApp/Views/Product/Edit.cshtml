@@ -24,22 +24,9 @@
 						</div>
 						@* Category *@
 						<div class="col">
-							<label asp-for="Category" class="form-label"></label>
-							<select class="form-select" id="category" asp-for="Category">
-								<option value="">Select category</option>
-								<option value="Fruits and Vegetables">Fruits and Vegetables</option>
-								<option value="Dairy & Eggs">Dairy & Eggs</option>
-								<option value="Meat & Seafood">Meat & Seafood</option>
-								<option value="Bakery & Bread">Bakery & Bread</option>
-								<option value="Pantry Staples">Pantry Staples</option>
-								<option value="Snacks & Confectionery">Snacks & Confectionery</option>
-								<option value="Beverages">Beverages</option>
-								<option value="Health & Beauty">Health & Beauty</option>
-								<option value="Baby & Child">Baby & Child</option>
-								<option value="Pet Care">Pet Care</option>
-								<option value="Electronics">Electronics</option>
-								<option value="Frozen Foods">Frozen Foods</option>
-								<option value="Household & Cleaning">Household & Cleaning</option>
+							<label asp-for="CategoryId" class="form-label"></label>
+							<select class="form-select" id="category" asp-for="CategoryId" asp-items="ViewBag.Categories">
+								<option value="">Select Category</option>
 							</select>
 						</div>
 					</div>

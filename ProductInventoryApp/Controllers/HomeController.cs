@@ -9,11 +9,13 @@ namespace ProductInventoryApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductRepo _productRepo;
+        private readonly ICategoryRepo _categoryRepo;
 
-        public HomeController(ILogger<HomeController> logger, IProductRepo productRepo)
+        public HomeController(ILogger<HomeController> logger, IProductRepo productRepo, ICategoryRepo categoryRepo)
         {
             _logger = logger;
             _productRepo = productRepo;
+            _categoryRepo = categoryRepo;
         }
 
         public async Task<IActionResult> Index()
@@ -21,7 +23,7 @@ namespace ProductInventoryApp.Controllers
             var products = await _productRepo.GetAllProducts();
             ViewBag.TotalValue = products.Sum(x => x.Price * x.Quantity);
             ViewBag.TotalQuantity = products.Sum(x => x.Quantity);
-            ViewBag.TotalCategories = products.Select(x => x.Category).Distinct().Count();
+            //ViewBag.TotalCategories = products.Select(x => x.Category).Distinct().Count();
             ViewBag.TotalItems = products.Select(x => x.Name).Distinct().Count();
             return View();
         }

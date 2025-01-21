@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductInventoryApp.Models;
 using ProductInventoryApp.Repository;
 
@@ -7,9 +8,11 @@ namespace ProductInventoryApp.Controllers
     public class ProductController : Controller
     {
         private readonly IProductRepo _productRepo;
-        public ProductController(IProductRepo productRepo)
+        private readonly ICategoryRepo _categoryRepo;
+        public ProductController(IProductRepo productRepo, ICategoryRepo categoryRepo)
         {
             _productRepo = productRepo;
+            _categoryRepo = categoryRepo;
         }
 
         // Get all products
@@ -28,8 +31,10 @@ namespace ProductInventoryApp.Controllers
         }
 
         // GET: Get the create new product page
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var categories = await _categoryRepo.GetAllCategories();
+            ViewBag.Categories = new SelectList(categories, "Id", "Name");
             return View();
         }
 
@@ -62,6 +67,8 @@ namespace ProductInventoryApp.Controllers
             {
                 return NotFound();
             }
+            var categories = await _categoryRepo.GetAllCategories();
+            ViewBag.Categories = new SelectList(categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -83,6 +90,8 @@ namespace ProductInventoryApp.Controllers
                 TempData["success"] = "Product updated successfully!";
                 return RedirectToAction("Index");
             }
+            var categories = await _categoryRepo.GetAllCategories();
+            ViewBag.Categories = new SelectList(categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 

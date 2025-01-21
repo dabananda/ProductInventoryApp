@@ -5,7 +5,7 @@
 namespace ProductInventoryApp.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdatedQuantity : Migration
+    public partial class Nullable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

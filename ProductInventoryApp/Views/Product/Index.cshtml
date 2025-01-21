@@ -12,7 +12,7 @@
 			<tr>
 				<th>Stock Summary</th>
 				<td>Total Items: @ViewBag.TotalItems</td>
-				<td>Total Category: @ViewBag.TotalCategories</td>
+				@* <td>Total Category: @ViewBag.TotalCategories</td> *@
 				<td>Total Quntity: @ViewBag.TotalQuantity</td>
 				<td>Total Stock Value: @ViewBag.TotalValue BDT</td>
 			</tr>
@@ -48,7 +48,7 @@
 								<td><img src="~/assets/no-image.jpg" width="50" height="50" alt="No image" /></td>
 							}
 							<td>@product.Name</td>
-							<td>@product.Category</td>
+							<td>@product.Category.Name</td>
 							<td>@product.Price tk</td>
 							<td>@product.Quantity @product.Unit</td>
 							<td>@(product.Price * product.Quantity) tk</td>

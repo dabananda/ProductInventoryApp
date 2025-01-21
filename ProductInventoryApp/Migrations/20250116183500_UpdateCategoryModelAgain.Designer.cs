@@ -12,8 +12,8 @@ using ProductInventoryApp.Data;
 namespace ProductInventoryApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250107030957_AddedProductImage")]
-    partial class AddedProductImage
+    [Migration("20250116183500_UpdateCategoryModelAgain")]
+    partial class UpdateCategoryModelAgain
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,29 @@ namespace ProductInventoryApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ProductInventoryApp.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("ProductInventoryApp.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -33,15 +56,8 @@ namespace ProductInventoryApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
@@ -52,7 +68,12 @@ namespace ProductInventoryApp.Migrations
                     b.Property<bool>("InStock")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("MenufactureDate")
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("ManufacturerDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -72,7 +93,25 @@ namespace ProductInventoryApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ProductInventoryApp.Models.Product", b =>
+                {
+                    b.HasOne("ProductInventoryApp.Models.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("ProductInventoryApp.Models.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
