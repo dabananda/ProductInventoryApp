@@ -68,7 +68,7 @@ namespace ProductInventoryApp.Controllers
                 return NotFound();
             }
             var categories = await _categoryRepo.GetAllCategories();
-            ViewBag.Categories = new SelectList(categories, "Id", "Name");
+            ViewBag.Categories = new SelectList(categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 

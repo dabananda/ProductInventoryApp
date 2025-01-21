@@ -36,12 +36,12 @@ namespace ProductInventoryApp.Repository
 
         public async Task<IEnumerable<Product>> GetAllProducts()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products.Include(p => p.Category).ToListAsync();
         }
 
         public async Task<Product?> GetProductById(int id)
         {
-            return await _context.Products.FindAsync(id);
+            return await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<Product?> UpdateProduct(Product product)
@@ -50,7 +50,7 @@ namespace ProductInventoryApp.Repository
             if (existingProduct != null)
             {
                 existingProduct.Name = product.Name;
-                existingProduct.Category = product.Category;
+                existingProduct.CategoryId = product.CategoryId;
                 existingProduct.Manufacturer = product.Manufacturer;
                 existingProduct.Price = product.Price;
                 existingProduct.Quantity = product.Quantity;
