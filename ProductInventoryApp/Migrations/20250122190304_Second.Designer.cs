@@ -12,8 +12,8 @@ using ProductInventoryApp.Data;
 namespace ProductInventoryApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250116194933_Nullable")]
-    partial class Nullable
+    [Migration("20250122190304_Second")]
+    partial class Second
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,8 +62,8 @@ namespace ProductInventoryApp.Migrations
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("InStock")
                         .HasColumnType("bit");

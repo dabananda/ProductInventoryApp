@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProductInventoryApp.Migrations
 {
     /// <inheritdoc />
-    public partial class CategoryModel : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,7 +39,7 @@ namespace ProductInventoryApp.Migrations
                     Unit = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ManufacturerDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InStock = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

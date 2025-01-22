@@ -72,22 +72,27 @@
 					</div>
 				</div>
 
-				@* ManufacturerDate *@
-				<div class="mb-3">
-					<label asp-for="ManufacturerDate" class="form-label"></label>
-					<input type="date" class="form-control" asp-for="ManufacturerDate">
-				</div>
-
-				@* ExpiryDate *@
-				<div class="mb-3">
-					<label asp-for="ExpiryDate" class="form-label"></label>
-					<input type="date" class="form-control" asp-for="ExpiryDate">
+				@* Manufacturer Date & Expiry Date *@
+				<div class="row mb-3">
+					<div class="col">
+						<label asp-for="ManufacturerDate" class="form-label"></label>
+						<input type="date" class="form-control" asp-for="ManufacturerDate">
+					</div>
+					<div class="col">
+						<label asp-for="ExpiryDate" class="form-label"></label>
+						<input type="date" class="form-control" asp-for="ExpiryDate">
+					</div>
 				</div>
 
 				@* Image *@
 				<div class="mb-3">
 					<label asp-for="ImageFile" class="form-label"></label>
-					<input type="file" class="form-control" id="image" asp-for="ImageFile">
+					<input type="file" class="form-control" id="imageUpload" asp-for="ImageFile">
+				</div>
+
+				@* Image Preview *@
+				<div class="mb-3">
+					<img src="" id="imageUrl" class="imageUrl" alt="Product image">
 				</div>
 
 				@* Submit Button *@
@@ -98,3 +103,33 @@
 		</div>
 	</div>
 </div>
+
+@section Scripts
+	{
+	<script>
+		async function uploadImage() {
+			const file = document.getElementById('imageUpload').files[0];
+			const formData = new FormData();
+			formData.append('file', file);
+
+			try {
+				const response = await fetch('/api/image', {
+					method: 'POST',
+					headers: {
+						'Accept': '*/*'
+					},
+					body: formData
+				});
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				const data = await response.json();
+				document.getElementById('imageUrl').src = data.link;
+				console.log('Upload successful:', data);
+			} catch (error) {
+				console.error('Upload failed:', error);
+			}
+		}
+		document.getElementById('imageUpload').addEventListener('change', uploadImage);
+	</script>
+}

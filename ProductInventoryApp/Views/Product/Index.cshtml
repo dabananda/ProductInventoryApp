@@ -41,7 +41,7 @@
 							<th class="ps-5">@product.Id</th>
 							@if (product.Image != null)
 							{
-								<td><img src="data:image/jpeg;base64,@Convert.ToBase64String(product.Image)" width="50" height="50" alt="Product image" /></td>
+								<td><img src="@product.Image" width="50" height="50" alt="Product image" /></td>
 							}
 							else
 							{

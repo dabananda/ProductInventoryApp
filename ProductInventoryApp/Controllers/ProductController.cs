@@ -9,10 +9,12 @@ namespace ProductInventoryApp.Controllers
     {
         private readonly IProductRepo _productRepo;
         private readonly ICategoryRepo _categoryRepo;
-        public ProductController(IProductRepo productRepo, ICategoryRepo categoryRepo)
+        private readonly IImageRepo _imageRepo;
+        public ProductController(IProductRepo productRepo, ICategoryRepo categoryRepo, IImageRepo imageRepo)
         {
             _productRepo = productRepo;
             _categoryRepo = categoryRepo;
+            _imageRepo = imageRepo;
         }
 
         // Get all products
@@ -43,11 +45,7 @@ namespace ProductInventoryApp.Controllers
             {
                 if (product.ImageFile != null)
                 {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        product.ImageFile.CopyTo(memoryStream);
-                        product.Image = memoryStream.ToArray();
-                    }
+                    product.Image = await _imageRepo.Upload(product.ImageFile);
                 }
                 await _productRepo.AddProduct(product);
                 TempData["success"] = "Product added successfully!";
@@ -77,11 +75,7 @@ namespace ProductInventoryApp.Controllers
             {
                 if (product.ImageFile != null)
                 {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        product.ImageFile.CopyTo(memoryStream);
-                        product.Image = memoryStream.ToArray();
-                    }
+                    product.Image = await _imageRepo.Upload(product.ImageFile);
                 }
                 await _productRepo.UpdateProduct(product);
                 TempData["success"] = "Product updated successfully!";
