@@ -20,6 +20,7 @@ namespace ProductInventoryApp
             // Dependency injection for ProductRepo
             builder.Services.AddScoped<IProductRepo, ProductRepo>();
             builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+            builder.Services.AddScoped<IImageRepo, ImageRepo>();
 
             var app = builder.Build();
 

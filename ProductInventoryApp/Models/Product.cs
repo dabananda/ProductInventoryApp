@@ -33,7 +33,7 @@ namespace ProductInventoryApp.Models
         [DataType(DataType.Date)]
         [Display(Name = "Expiry Date")]
         public DateTime ExpiryDate { get; set; }
-        public byte[]? Image { get; set; }
+        public string? Image { get; set; }
         [NotMapped]
         [Display(Name = "Product Image")]
         public IFormFile? ImageFile { get; set; }
