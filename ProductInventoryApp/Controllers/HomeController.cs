@@ -21,9 +21,10 @@ namespace ProductInventoryApp.Controllers
         public async Task<IActionResult> Index()
         {
             var products = await _productRepo.GetAllProducts();
+            var categories = await _categoryRepo.GetAllCategories();
             ViewBag.TotalValue = products.Sum(x => x.Price * x.Quantity);
             ViewBag.TotalQuantity = products.Sum(x => x.Quantity);
-            //ViewBag.TotalCategories = products.Select(x => x.Category).Distinct().Count();
+            ViewBag.TotalCategories = categories.Count();
             ViewBag.TotalItems = products.Select(x => x.Name).Distinct().Count();
             return View();
         }
