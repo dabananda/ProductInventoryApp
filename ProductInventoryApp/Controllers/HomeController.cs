@@ -22,10 +22,18 @@ namespace ProductInventoryApp.Controllers
         {
             var products = await _productRepo.GetAllProducts();
             var categories = await _categoryRepo.GetAllCategories();
+
+            // Calculate dashboard metrics
             ViewBag.TotalValue = products.Sum(x => x.Price * x.Quantity);
             ViewBag.TotalQuantity = products.Sum(x => x.Quantity);
             ViewBag.TotalCategories = categories.Count();
             ViewBag.TotalItems = products.Select(x => x.Name).Distinct().Count();
+
+            // Prepare chart data
+            ViewBag.ProductNames = products.Select(p => p.Name).ToList();
+            ViewBag.ProductQuantities = products.Select(p => p.Quantity).ToList();
+            ViewBag.ProductValues = products.Select(p => p.Price * p.Quantity).ToList();
+
             return View();
         }
 
