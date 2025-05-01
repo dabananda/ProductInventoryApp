@@ -10,8 +10,6 @@ namespace ProductInventoryApp.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder); // Call base first to set up tables
-
             // Seed roles (Super Admin, Admin, User)
             var superAdminRoleId = "900824ae-487d-408e-b3bf-4b551dbe559a";
             var adminRoleId = "cf0f75e2-08ab-4a57-a21a-5f8f24b3b826";
@@ -54,8 +52,6 @@ namespace ProductInventoryApp.Data
                 Email = "superadmin@email.com",
                 NormalizedEmail = "SUPERADMIN@EMAIL.COM",
                 NormalizedUserName = "SUPERADMIN",
-                EmailConfirmed = true, // Set to true to avoid email confirmation requirement
-                LockoutEnabled = false
             };
 
             // Hash password
@@ -85,6 +81,8 @@ namespace ProductInventoryApp.Data
             };
 
             builder.Entity<IdentityUserRole<string>>().HasData(superAdminRoles);
+
+            base.OnModelCreating(builder);
         }
     }
 }

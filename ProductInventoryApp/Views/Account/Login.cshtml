@@ -1,0 +1,25 @@
+﻿@model ProductInventoryApp.Models.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="w-50 mx-auto">
+        <h2 class="text-center">Login</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input asp-for="Username" class="form-control" type="text" name="username" placeholder="Enter username" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input asp-for="Password" class="form-control" type="password" name="password" placeholder="Enter password" />
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <div class="mt-3">
+            Don't have an account? <a href="@Url.Action("Registration", "Account")">Register here</a>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductInventoryApp.Models;
 using ProductInventoryApp.Repository;
@@ -18,6 +19,7 @@ namespace ProductInventoryApp.Controllers
             _categoryRepo = categoryRepo;
         }
 
+        [Authorize(Roles = "SuperAdmin,Admin")]
         public async Task<IActionResult> Index()
         {
             var products = await _productRepo.GetAllProducts();

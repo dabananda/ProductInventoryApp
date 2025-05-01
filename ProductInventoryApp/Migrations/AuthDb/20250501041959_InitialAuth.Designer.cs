@@ -12,7 +12,7 @@ using ProductInventoryApp.Data;
 namespace ProductInventoryApp.Migrations.AuthDb
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20250501024726_InitialAuth")]
+    [Migration("20250501041959_InitialAuth")]
     partial class InitialAuth
     {
         /// <inheritdoc />
@@ -169,15 +169,15 @@ namespace ProductInventoryApp.Migrations.AuthDb
                         {
                             Id = "e17b659e-eada-4c9a-8e3a-71551dc7f5a4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "678b0c1a-c586-4fca-b007-b480e1a84b36",
+                            ConcurrencyStamp = "94f6d540-b4f0-46f2-9fdb-9a1861e22e99",
                             Email = "superadmin@email.com",
-                            EmailConfirmed = true,
+                            EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@EMAIL.COM",
                             NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG1vTZwXbvnoWViXYqKN9FF+fq83EEUkr41cr6Dk07szWe9c57GgLCgPv70g9nLauQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIEyfOs105oWr30pxvGXuNNHS25PHYvcBhhKRa6ArdDftH2/rHYZB+OX5cmkWo6vTw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bda1b638-1920-49e6-a128-93047269c45a",
+                            SecurityStamp = "e0026cfb-2d2e-46ee-940e-1b4697a87309",
                             TwoFactorEnabled = false,
                             UserName = "superadmin"
                         });
