@@ -171,7 +171,7 @@ namespace ProductInventoryApp.Migrations.AuthDb
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "e17b659e-eada-4c9a-8e3a-71551dc7f5a4", 0, "1fa436a2-c2f6-4a82-bfcd-73f4e39be3e9", "superadmin@email.com", false, false, null, "SUPERADMIN@EMAIL.COM", "SUPERADMIN", "AQAAAAIAAYagAAAAEInAvFqyS7JWVbYFCd/SmSjc5Srx+xqbTw8a7h+iit7uoxfqwHS8Uqrw83fI9yp1qg==", null, false, "d2992b85-030e-4e14-a565-a3a29dceb1e3", false, "superadmin" });
+                values: new object[] { "e17b659e-eada-4c9a-8e3a-71551dc7f5a4", 0, "678b0c1a-c586-4fca-b007-b480e1a84b36", "superadmin@email.com", true, false, null, "SUPERADMIN@EMAIL.COM", "SUPERADMIN", "AQAAAAIAAYagAAAAEG1vTZwXbvnoWViXYqKN9FF+fq83EEUkr41cr6Dk07szWe9c57GgLCgPv70g9nLauQ==", null, false, "bda1b638-1920-49e6-a128-93047269c45a", false, "superadmin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

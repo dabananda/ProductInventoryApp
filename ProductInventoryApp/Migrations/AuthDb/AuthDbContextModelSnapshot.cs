@@ -166,15 +166,15 @@ namespace ProductInventoryApp.Migrations.AuthDb
                         {
                             Id = "e17b659e-eada-4c9a-8e3a-71551dc7f5a4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e3dee988-1138-4d6f-9a13-8348e0a336e5",
+                            ConcurrencyStamp = "678b0c1a-c586-4fca-b007-b480e1a84b36",
                             Email = "superadmin@email.com",
-                            EmailConfirmed = false,
+                            EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@EMAIL.COM",
                             NormalizedUserName = "SUPERADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAELl2kjn7Dx4vmFdA4+bu9BPSlLDuo0iEXKaLQAC4g1mpbrShvoq8UNCveZGNUY/mGQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG1vTZwXbvnoWViXYqKN9FF+fq83EEUkr41cr6Dk07szWe9c57GgLCgPv70g9nLauQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "292ce229-0ae4-4b3e-8f9e-477030715d41",
+                            SecurityStamp = "bda1b638-1920-49e6-a128-93047269c45a",
                             TwoFactorEnabled = false,
                             UserName = "superadmin"
                         });
