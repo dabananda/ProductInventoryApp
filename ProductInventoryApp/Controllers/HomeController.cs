@@ -20,9 +20,9 @@ namespace ProductInventoryApp.Controllers
         }
 
         [Authorize(Roles = "SuperAdmin,Admin")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? searchQuery)
         {
-            var products = await _productRepo.GetAllProducts();
+            var products = await _productRepo.GetAllProducts(searchQuery);
             var categories = await _categoryRepo.GetAllCategories();
 
             // Calculate dashboard metrics

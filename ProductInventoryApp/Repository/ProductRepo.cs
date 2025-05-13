@@ -34,9 +34,18 @@ namespace ProductInventoryApp.Repository
             return null;
         }
 
-        public async Task<IEnumerable<Product>> GetAllProducts()
+        public async Task<IEnumerable<Product>> GetAllProducts(string? searchQuery)
         {
-            return await _context.Products.Include(p => p.Category).ToListAsync();
+            if (searchQuery == null)
+            {
+                return await _context.Products.Include(p => p.Category).ToListAsync();
+            }
+            var query = _context.Products.Include(p => p.Category).AsQueryable();
+            if (string.IsNullOrEmpty(searchQuery) == false)
+            {
+                query = query.Where(p => p.Name.Contains(searchQuery) || p.Category.Name.Contains(searchQuery));
+            }
+            return await query.ToListAsync();
         }
 
         public async Task<Product?> GetProductById(int id)
